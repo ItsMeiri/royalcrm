@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "daniel-royalcrm": {
+      "hosting": {
+        "royalcrm": [
+          "daniel-royalcrm"
+        ]
+      }
+    }
+  }
+}
