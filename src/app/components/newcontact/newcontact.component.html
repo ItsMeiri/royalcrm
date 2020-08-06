@@ -1,0 +1,131 @@
+<app-page-header
+  title="add new contact"
+  description="add new contact"
+></app-page-header>
+
+<div class="row justify-content-center">
+  <div class="col-10">
+    <form #newContactForm="ngForm" (ngSubmit)="addContact(newContactForm)">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <label for="name"><span class="text-danger">* </span>Full Name</label>
+          <input
+            type="text"
+            #nf="ngModel"
+            [(ngModel)]="contact.name"
+            name="name"
+            id="name"
+            class="form-control"
+            required
+            minlength="3"
+            pattern="^[A-z]+ [A-z]+( [A-z]*)*"
+            [ngClass]="{
+              'is-valid': nf.valid && nf.touched,
+              'is-invalid': nf.invalid && nf.touched
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="nf.errors?.required">
+            this field is required
+          </div>
+          <div class="invalid-feedback" *ngIf="nf.errors?.minlength">
+            this field requires at least
+            {{ nf.errors.minlength.requiredLength }} characters
+          </div>
+          <div class="invalid-feedback" *ngIf="nf.errors?.pattern">
+            this field requires a first and last name
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="email"><span class="text-danger">* </span>Email</label>
+          <input
+            type="email"
+            #ef="ngModel"
+            [(ngModel)]="contact.email"
+            name="email"
+            id="email"
+            class="form-control"
+            required
+            minlength="6"
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+            [ngClass]="{
+              'is-valid': ef.valid && ef.touched,
+              'is-invalid': ef.invalid && ef.touched
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="ef.errors?.required">
+            this field is required
+          </div>
+          <div class="invalid-feedback" *ngIf="ef.errors?.minlength">
+            this field requires at least
+            {{ ef.errors.minlength.requiredLength }} characters
+          </div>
+          <div class="invalid-feedback" *ngIf="ef.errors?.pattern">
+            this field requires a valid email address
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="birthday"
+            ><span class="text-danger">* </span>Birthday</label
+          >
+          <input
+            type="date"
+            #bdf="ngModel"
+            [(ngModel)]="contact.birthday"
+            name="birthday"
+            id="birthday"
+            class="form-control"
+            required
+            [ngClass]="{
+              'is-valid': bdf.valid && bdf.touched,
+              'is-invalid': bdf.invalid && bdf.touched
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="bdf.errors?.required">
+            this field is required
+          </div>
+        </div>
+        <div class="col-md-10">
+          <label for="phones">Phone(s)</label>
+
+          <input
+            type="tel"
+            #pf="ngModel"
+            [(ngModel)]="contact.phones"
+            name="phones"
+            id="phones"
+            class="form-control"
+            minlength="8"
+            pattern="^0[2-9]\d{7,8}$"
+            [ngClass]="{
+              'is-valid': pf.valid && pf.touched,
+              'is-invalid': pf.invalid && pf.touched
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="pf.errors?.minlength">
+            this field requires at least
+            {{ pf.errors.minlength.requiredLength }} characters
+          </div>
+          <div class="invalid-feedback" *ngIf="pf.errors?.pattern">
+            this field requires a valid phone number
+          </div>
+        </div>
+      </div>
+      <div class="fixed-bottom p-3 text-center">
+        <a routerLink="/contacts" class="btn">Cancel</a>
+        <input
+          (click)="resetForm(newContactForm)"
+          type="button"
+          value="Reset"
+          class="btn ml-3"
+          [disabled]="newContactForm.untouched"
+        />
+        <input
+          type="submit"
+          value="Save"
+          class="btn ml-3"
+          [disabled]="newContactForm.invalid"
+        />
+      </div>
+    </form>
+  </div>
+</div>

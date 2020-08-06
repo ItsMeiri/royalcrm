@@ -73,4 +73,14 @@ export class ContactsService {
   getAll(): Contact[] {
     return this._contacts;
   }
+
+  addContact(contact) {
+    let { name, email, phones, birthday } = contact;
+
+    let _phones = [phones];
+    this._contacts.push({ name, email, birthday, phones: _phones });
+
+    // const _phones = [];
+    // _phones.push(phones);
+  }
 }

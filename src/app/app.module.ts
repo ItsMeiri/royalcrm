@@ -11,6 +11,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { NewcustomerComponent } from './components/newcustomer/newcustomer.component';
+import { NewcontactComponent } from './components/newcontact/newcontact.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NewcustomerComponent } from './components/newcustomer/newcustomer.compo
     PageNotFoundComponent,
     CustomersComponent,
     NewcustomerComponent,
+    NewcontactComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
