@@ -76,9 +76,16 @@ export class ContactsService {
 
   addContact(contact) {
     let { name, email, phones, birthday } = contact;
-
-    let _phones = [phones];
-    this._contacts.push({ name, email, birthday, phones: _phones });
+    let _phones = new Array(0);
+    if (phones) {
+      _phones = [phones];
+    }
+    this._contacts.push({
+      name,
+      email,
+      birthday,
+      phones: _phones,
+    });
 
     // const _phones = [];
     // _phones.push(phones);
