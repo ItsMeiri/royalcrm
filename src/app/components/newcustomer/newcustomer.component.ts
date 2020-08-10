@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Customer } from 'src/app/interfaces/customer';
+import { CustomersService } from './../../services/customers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newcustomer',
@@ -8,7 +10,10 @@ import { Customer } from 'src/app/interfaces/customer';
   styleUrls: ['./newcustomer.component.scss'],
 })
 export class NewcustomerComponent {
-  constructor() {}
+  constructor(
+    private customersService: CustomersService,
+    private router: Router
+  ) {}
   form: Customer = {
     firstName: '',
     lastName: '',
@@ -18,9 +23,11 @@ export class NewcustomerComponent {
     notes: '',
   };
 
-  onSubmit(form: NgForm) {
-    console.log(form);
-    this.resetForm(form);
+  async onSubmit(form: NgForm) {
+    if (form.valid) {
+      await this.customersService.add(form.value);
+      this.router.navigate(['/customers']);
+    }
   }
 
   resetForm(form: NgForm) {

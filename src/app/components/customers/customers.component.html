@@ -1,13 +1,21 @@
-<app-page-header title="Customer Page" icon="fas fa-dollar-sign" description="Company customers list"></app-page-header>
+<app-page-header
+  title="Customer Page"
+  icon="fas fa-dollar-sign"
+  description="Company customers list"
+></app-page-header>
 
 <div class="row">
   <div class="col-12">
     <span class="float-right">
       <a routerLink="new" class="btn">
-        <i class="fas fa-plus-circle">
-        </i>
+        <i class="fas fa-plus-circle"> </i>
         Add New Customer
       </a>
     </span>
+  </div>
+</div>
+<div *ngIf="customers$ | async as customers">
+  <div *ngFor="let customer of customers; index as idx">
+    {{ idx + 1 }}. {{ customer.firstName }}
   </div>
 </div>

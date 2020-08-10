@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +15,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { CustomersComponent } from './components/customers/customers.component';
 import { NewcustomerComponent } from './components/newcustomer/newcustomer.component';
 import { NewcontactComponent } from './components/newcontact/newcontact.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,14 @@ import { NewcontactComponent } from './components/newcontact/newcontact.componen
     NewcustomerComponent,
     NewcontactComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
